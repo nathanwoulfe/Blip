@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en_us" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="blip">
+    <key alias="selectItem">Select item</key>
+    <key alias="selectItems">Select items</key>
+    <key alias="noBlocks">No blocks available</key>
+  </area>
+</language>

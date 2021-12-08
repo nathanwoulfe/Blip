@@ -1,0 +1,101 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\_DEV\\Blip\\src\\Blip.Web\\Blip.Web.csproj": {}
+  },
+  "projects": {
+    "C:\\_DEV\\Blip\\src\\Blip.Web\\Blip.Web.csproj": {
+      "version": "1.0.0-alpha",
+      "restore": {
+        "projectUniqueName": "C:\\_DEV\\Blip\\src\\Blip.Web\\Blip.Web.csproj",
+        "projectName": "Blip.Web",
+        "projectPath": "C:\\_DEV\\Blip\\src\\Blip.Web\\Blip.Web.csproj",
+        "packagesPath": "C:\\Users\\nwoulfe1\\.nuget\\packages\\",
+        "outputPath": "C:\\_DEV\\Blip\\src\\Blip.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\_DEV\\Blip\\NuGet.Config",
+          "C:\\Users\\nwoulfe1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472",
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\_DEV\\NestingContently\\__out": {},
+          "C:\\_DEV\\Plumber8\\nupkgs": {},
+          "C:\\_DEV\\Preflight\\nupkgs": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.myget.org/F/umbracoprereleases/api/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          },
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU5125",
+            "NU5128"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreLockProperties": {
+          "restorePackagesWithLockFile": "true"
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Umbraco.Cms.Web.BackOffice": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Umbraco.Cms.Web.Website": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        },
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "UmbracoCms.Web": {
+              "target": "Package",
+              "version": "[8.16.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

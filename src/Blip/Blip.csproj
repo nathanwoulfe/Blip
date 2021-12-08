@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net472</TargetFrameworks>
+    <Product>Blip</Product>
+    <Title>Blip</Title>
+    <Id>Blip</Id>
+    <PackageId>Blip</PackageId>
+    <Description>Block List Item Picker for Umbraco CMS</Description>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <IncludeSymbols>false</IncludeSymbols>
+  </PropertyGroup>
+  <Target Name="RemoveLuceneAnalyzer" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Lucene.Net.CodeAnalysis.CSharp'" />
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\Blip.Web\Blip.Web.csproj" />
+    <ProjectReference Include="..\Blip.Backoffice\Blip.Backoffice.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <PackageReference Include="UmbracoCms.Core" Version="8.16.0" />
+    <PackageReference Include="UmbracoCms.Web" Version="8.16.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
+  </ItemGroup>
+</Project>
