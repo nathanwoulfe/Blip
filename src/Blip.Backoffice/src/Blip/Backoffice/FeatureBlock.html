@@ -1,0 +1,7 @@
+﻿<button type="button" 
+        ng-controller="featureBlockController" 
+        ng-click="api.editBlock(block, block.hideContentInOverlay, index, parentForm)" 
+        class="btn-reset umb-outline blockelement-labelblock-editor blockelement__draggable-element ng-scope ui-sortable-handle">
+    <h2 ng-bind="block.data.featureName"></h2>
+    <p ng-bind="block.data.detail"></p>
+</button>
