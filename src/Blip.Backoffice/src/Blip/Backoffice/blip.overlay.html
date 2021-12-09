@@ -1,0 +1,81 @@
+﻿<div ng-controller="Blip.Overlay.Controller as vm">
+    <umb-editor-view>
+
+        <umb-editor-header name="model.title"
+                           name-locked="true"
+                           hide-alias="true"
+                           hide-icon="true"
+                           hide-description="true">
+        </umb-editor-header>
+
+        <umb-editor-container>
+
+            <umb-load-indicator ng-if="vm.loading">
+            </umb-load-indicator>
+
+            <umb-box>
+                <umb-box-content>
+                    <umb-search-filter input-id="userpicker-search"
+                                       model="vm.searchTerm"
+                                       label-key="placeholders_filter"
+                                       text="Type to filter..."
+                                       css-class="w-100 mb-15"
+                                       auto-focus="true">
+                    </umb-search-filter>
+
+                    <div class="umb-user-group-picker-list">
+
+                        <div class="umb-user-group-picker-list-item" ng-repeat="block in model.blocks | filter:vm.searchTerm">
+
+                            <button type="button" class="umb-user-group-picker__action" ng-click="vm.selectBlock(block)">
+                                <span class="sr-only" ng-if="!userGroup.selected"><localize key="buttons_select">Select</localize> {{block._label}}</span>
+                                <span class="sr-only" ng-if="userGroup.selected">{{block._label}} <localize key="general_selected">Selected</localize></span>
+                            </button>
+
+                            <div class="umb-user-group-picker-list-item__icon">
+                                <umb-icon icon="{{ block._icon }}" class="{{ block._iconColor }}" ng-if="!block._selected"></umb-icon>
+                                <umb-checkmark ng-if="block._selected" checked="block._selected" size="xs"></umb-checkmark>
+                            </div>
+
+                            <div>
+                                <div class="umb-user-group-picker-list-item__name">{{ block._label }}</div>
+
+                                <div class="umb-user-group-picker-list-item__permission" ng-if="block.sections">
+                                    <span>
+                                        <span class="bold"><localize key="main_sections">Sections</localize>:</span>
+                                        <span ng-repeat="section in userGroup.sections">{{ block.name }}<span ng-if="!$last">, </span></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <umb-empty-state ng-if="model.blocks.length === 0 && !vm.loading"
+                                     position="center">
+                        <localize key="blip_noBlocks">No blocks available</localize>
+                    </umb-empty-state>
+
+                </umb-box-content>
+            </umb-box>
+        </umb-editor-container>
+
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <umb-button type="button"
+                            button-style="link"
+                            label-key="general_close"
+                            shortcut="esc"
+                            action="vm.close()">
+                </umb-button>
+                <umb-button ng-if="vm.multiPicker"
+                            type="button"
+                            disabled="model.selection.length === 0"
+                            button-style="success"
+                            label-key="general_submit"
+                            action="vm.submit(model)">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+
+    </umb-editor-view>
+</div>
