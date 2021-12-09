@@ -1,6 +1,0 @@
-{
-  "javascript": [
-    "~/App_Plugins/Blip/Backoffice/js/blip.js"
-  ], 
-  "bundleOptions": "None"
-} 
