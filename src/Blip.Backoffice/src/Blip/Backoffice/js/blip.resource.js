@@ -2,14 +2,12 @@
     return {
         // needs to get the scaffolds for the types based on the existing content/settings keys
         // then iterate the contentData to set the correct type and generate _label
-        getBlockData: sourcePropery => {
+        getBlockData: sourceProperty => {
             let scaffoldKeys = [];
 
-            sourceProperty.value.contentData.forEach(block => {
+            sourceProperty.config.blocks.forEach(block => {
                 scaffoldKeys.push(block.contentElementTypeKey);
-                if (block.settingsElementTypeKey !== null) {
-                    scaffoldKeys.push(block.settingsElementTypeKey);
-                }
+                scaffoldKeys.push(block.settingsElementTypeKey);                
             });
 
             scaffoldKeys = scaffoldKeys.filter((value, index, self) => self.indexOf(value) === index);
@@ -18,31 +16,38 @@
                 .then(scaffolds => {
                     sourceProperty.value.contentData.forEach((block, idx) => {
 
-                        const interpolator = $interpolate(block.config.label);
+                        const blockConfig = sourceProperty.config.blocks.find(b => b.contentElementTypeKey === block.contentTypeKey);
+                        const interpolator = $interpolate(blockConfig.label);
                         const contentType = scaffolds[block.contentTypeKey];
 
                         const labelVars = Object.assign({
-                            '$contentTypeName': contentType.name,
-                            '$settings': block.settingsData || {},
+                            '$contentTypeName': contentType.contentTypeName,
+                            '$settings': scaffolds[block.settingsTypeKey] || {},
                             '$layout': block.layout || {},
                             '$index': idx + 1,
                         }, block);
 
                         const label = interpolator(labelVars);
+                        block._label = label || contentType.contentTypeName;
 
-                        block._label = label || contentType.name;
+                        block._view = blockConfig.view?.substring(1) || null;
+                        block._stylesheet = blockConfig.stylesheet?.substring(1) || null;
 
                         // icon
                         block._iconRaw = contentType.icon;
 
-                        var iconSplit = cpmtemtType.icon.split(' ');
+                        var iconSplit = contentType.icon.split(' ');
                         block._icon = iconSplit[0];
                         block._iconColor = iconSplit[1] || '';
 
+                        // for button labels
+                        blockConfig.contentTypeName = contentType.contentTypeName;
                     });
                 });
         },
         getSourceProperty: (sourceNode, sourcePropertyAlias) => {
+            let sourceProperty;
+
             for (let tab of sourceNode.variants[0].tabs) {
                 sourceProperty = tab.properties.find(x => x.alias === sourcePropertyAlias);
                 if (sourceProperty) break;
@@ -53,4 +58,4 @@
     }
 }
 
-angular.module('umbrac').service('Blip.Resource', ['contentResource', '$interpolate', blipResource]);
+angular.module('umbraco').service('Blip.Resource', ['contentResource', '$interpolate', blipResource]);

@@ -1,4 +1,4 @@
-﻿<div ng-controller="Blip.Overlay.Controller as vm">
+﻿<div ng-controller="Blip.Overlay.Controller as vm" class="blip blip-overlay">
     <umb-editor-view>
 
         <umb-editor-header name="model.title"
@@ -25,27 +25,29 @@
 
                     <div class="umb-user-group-picker-list">
 
-                        <div class="umb-user-group-picker-list-item" ng-repeat="block in model.blocks | filter:vm.searchTerm">
+                        <div style="position:relative"
+                             ng-class="{ 'umb-user-group-picker-list-item': !block._view }" 
+                             ng-repeat="block in model.blocks | filter:vm.searchTerm">
 
-                            <button type="button" class="umb-user-group-picker__action" ng-click="vm.selectBlock(block)">
-                                <span class="sr-only" ng-if="!userGroup.selected"><localize key="buttons_select">Select</localize> {{block._label}}</span>
-                                <span class="sr-only" ng-if="userGroup.selected">{{block._label}} <localize key="general_selected">Selected</localize></span>
+                            <button type="button" 
+                                    class="umb-user-group-picker__action" 
+                                    style="z-index:1000" 
+                                    ng-click="vm.selectBlock(block)">
+                                <span class="sr-only" ng-if="!block._selected"><localize key="buttons_select">Select</localize> {{block._label}}</span>
+                                <span class="sr-only" ng-if="block._selected">{{block._label}} <localize key="general_selected">Selected</localize></span>
                             </button>
 
-                            <div class="umb-user-group-picker-list-item__icon">
-                                <umb-icon icon="{{ block._icon }}" class="{{ block._iconColor }}" ng-if="!block._selected"></umb-icon>
-                                <umb-checkmark ng-if="block._selected" checked="block._selected" size="xs"></umb-checkmark>
-                            </div>
-
-                            <div>
-                                <div class="umb-user-group-picker-list-item__name">{{ block._label }}</div>
-
-                                <div class="umb-user-group-picker-list-item__permission" ng-if="block.sections">
-                                    <span>
-                                        <span class="bold"><localize key="main_sections">Sections</localize>:</span>
-                                        <span ng-repeat="section in userGroup.sections">{{ block.name }}<span ng-if="!$last">, </span></span>
-                                    </span>
+                            <div ng-if="!block._view">
+                                <div class="umb-user-group-picker-list-item__icon">
+                                    <umb-icon icon="{{ block._icon }}" class="{{ block._iconColor }}" ng-if="!block._selected"></umb-icon>
+                                    <umb-checkmark ng-if="block._selected" checked="block._selected" size="xs"></umb-checkmark>
                                 </div>
+                                <div class="umb-user-group-picker-list-item__name">{{ block._label }}</div>
+                            </div>
+                            <div ng-if="block._view" class="umb-block-list__block">
+                                <umb-checkmark  checked="block._selected" size="xs" class="blip-block--checkbox"></umb-checkmark>
+                                <blip-block block="{ data: block }" view="{{ block._view }}" stylesheet="{{ block._stylesheet }}">
+                                </blip-block>
                             </div>
                         </div>
                     </div>

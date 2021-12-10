@@ -1,22 +1,53 @@
-﻿<div ng-controller="Blip.Editor.Controller as vm">
+﻿<div ng-controller="Blip.Editor.Controller as vm" class="blip">
     <ng-form name="blipForm">
-        <div ui-sortable="vm.sortOptions" ng-model="sortableModel">
-            <umb-node-preview ng-repeat="block in vm.renderModel track by $index"
-                              name="block._label"
-                              icon="block._iconRaw"
-                              sortable="true"
-                              allow-remove="true"
-                              allow-edit="false"
-                              on-remove="vm.removeBlock($index)">
-            </umb-node-preview>
+
+        <div ui-sortable="vm.sortOptions" ng-model="vm.renderModel">
+            <div ng-repeat="block in vm.renderModel track by block.udi">
+                <umb-node-preview ng-if="!block._view"
+                                  name="block._label"
+                                  icon="block._iconRaw"
+                                  sortable="true"
+                                  allow-remove="true"
+                                  allow-edit="false"
+                                  on-remove="vm.removeBlock(block.udi)">
+                </umb-node-preview>
+                <div ng-if="block._view" class="umb-block-list__block">
+                    <blip-block block="{ data: block }" view="{{ block._view }}" stylesheet="{{ block._stylesheet }}">
+                    </blip-block>
+
+                    <div class="umb-block-list__block--actions">
+                        <button type="button" class="btn-reset umb-outline action --delete" localize="title" title="actions_delete"
+                                ng-click="vm.removeBlock(block.udi)">
+                            <umb-icon icon="icon-trash" class="icon"></umb-icon>
+                            <span class="sr-only">
+                                <localize key="general_delete">Delete</localize>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <button ng-show="vm.multiPicker && vm.renderModel.length < vm.maxNumberOfItems || !vm.renderModel.length || !vm.maxNumberOfItems"
-                type="button"
-                class="umb-node-preview-add"
-                ng-click="vm.addBlock()">
-            <localize key="general_add">Add</localize>
-        </button>
+        <div class="umb-block-list__actions" ng-if="vm.loading !== true">
+            <button ng-disabled="vm.multiPicker && vm.renderModel.length === vm.maxNumberOfItems"
+                    id="{{ vm.model.alias }}"
+                    type="button"
+                    class="btn-reset umb-block-list__create-button umb-outline blip-add-btn"
+                    ng-click="vm.addBlock()">
+                <localize ng-if="vm.types.length !== 1" key="blockEditor_addBlock">Add content</localize>
+                <localize ng-if="vm.types.length === 1" key="blockEditor_addThis" tokens="[vm.types[0]._contentTypeName]">Add content</localize>
+            </button>
+
+            <button type="button"
+                    class="btn-reset umb-block-list__clipboard-button umb-outline blip-manage-btn"
+                    ng-click="vm.createBlock()">
+                <umb-icon icon="icon-edit" class="icon"></umb-icon>
+                <span class="sr-only">
+                    <localize key="blockEditor_tabClipboard">Manage blocks</localize>
+                </span>
+            </button>
+
+        </div>
 
         <!-- validation messages -->
         <div class="umb-contentpicker__min-max-help"

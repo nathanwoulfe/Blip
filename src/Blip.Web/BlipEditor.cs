@@ -18,8 +18,10 @@ namespace Blip.Web
 #if NETCOREAPP
         private readonly IIOHelper _ioHelper;
 
-        public BlipEditor(IDataValueEditorFactory factory) : base(factory)
-        { }
+        public BlipEditor(IDataValueEditorFactory factory, IIOHelper ioHelper) : base(factory)
+        { 
+            _ioHelper = ioHelper;
+        }
 
         protected override IConfigurationEditor CreateConfigurationEditor() => new BlipConfigurationEditor(_ioHelper);
 #else

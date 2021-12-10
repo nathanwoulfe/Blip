@@ -1739,6 +1739,13 @@
           "Umbraco.Cms.Infrastructure": "9.1.2",
           "Umbraco.Cms.Web.Common": "9.1.2"
         }
+      },
+      "blip.web": {
+        "type": "Project",
+        "dependencies": {
+          "Umbraco.Cms.Web.BackOffice": "9.0.0",
+          "Umbraco.Cms.Web.Website": "9.0.0"
+        }
       }
     }
   }

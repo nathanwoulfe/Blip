@@ -1,5 +1,13 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BLiptest>
 @using ContentModels = Umbraco.Web.PublishedModels;
 @{
-	Layout = null;
+    Layout = null;
+}
+
+@{
+    foreach (var block in Model.Blip.Select(c => c.Content).OfType<Feature>())
+    {
+        @block.FeatureName
+        <br />
+    }
 }

@@ -29,11 +29,13 @@ namespace Blip.Web
 
         public object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview)
         {
+            if (inter == null) return null;
+
             // inter is an array of element udis from the source node
             // we need the typed node, to get the source block list and keep only the required items
             var configuration = propertyType.DataType.ConfigurationAs<BlipConfiguration>();
 
-            if (configuration.SourceNode == null) return null;
+            if (configuration.SourceNode == null || configuration.SourceProperty == null) return null;
 
 #if NETCOREAPP
             _publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot publishedSnapshot);
@@ -45,9 +47,13 @@ namespace Blip.Web
 
             var blockUdis = JsonConvert.DeserializeObject<List<string>>(inter.ToString());
 
-            var result = new BlockListModel(sourceProperty.Where(block => blockUdis.Contains(block.ContentUdi.ToString())).ToList());
+            var blocks = new List<BlockListItem>();
+            foreach (var udi in blockUdis)
+            {
+                blocks.Add(sourceProperty.FirstOrDefault(x => x.ContentUdi.ToString() == udi));
+            }
 
-            return result;
+            return new BlockListModel(blocks.ToList());
         }
 
         public object ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview)

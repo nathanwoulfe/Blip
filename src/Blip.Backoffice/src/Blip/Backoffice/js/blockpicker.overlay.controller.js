@@ -1,16 +1,13 @@
-﻿function blipOverlayController($scope, contentResource, localizationService, blockEditorModelObject, $interpolate) {
+﻿function blipOverlayController($scope, localizationService) {
     var vm = this;
 
-    vm.blocks = [];
     vm.loading = false;
-    vm.blockOptions = {};
 
     vm.selectBlock = selectBlock;
     vm.submit = submit;
     vm.close = close;
 
     vm.multiPicker = $scope.model.multiPicker;
-
 
     /**
      * 
@@ -29,6 +26,8 @@
         if (!$scope.model.selection) {
             $scope.model.selection = [];
         }
+
+        vm.loading = false;
     }
 
     /**
@@ -51,7 +50,7 @@
                 });
             } else {
                 if (!vm.multiPicker) {
-                    deselectAllBlocks($scope.model.selection);
+                    $scope.model.blocks.forEach(b => b._selected = false);
                 }
                 block._selected = true;
                 $scope.model.selection.push(block);
@@ -61,16 +60,6 @@
         if (!vm.multiPicker) {
             submit($scope.model);
         }
-    }
-
-
-    /**
-     * 
-     * @param {any} blocks
-     */
-    function deselectAllBlocks(blocks) {
-        blocks.forEach(b => b._selected = false);
-        blocks.length = 0;
     }
 
 
@@ -93,4 +82,4 @@
     onInit();
 }
 
-angular.module('umbraco').controller('Blip.Overlay.Controller', ['$scope', 'contentResource', 'localizationService', 'blockEditorModelObject', '$interpolate', blipOverlayController]);
+angular.module('umbraco').controller('Blip.Overlay.Controller', ['$scope', 'localizationService', blipOverlayController]);
