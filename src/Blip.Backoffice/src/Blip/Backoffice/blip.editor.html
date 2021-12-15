@@ -29,13 +29,12 @@
         </div>
 
         <div class="umb-block-list__actions" ng-if="vm.loading !== true">
-            <button ng-disabled="vm.multiPicker && vm.renderModel.length === vm.maxNumberOfItems"
-                    id="{{ vm.model.alias }}"
+            <button id="{{ vm.model.alias }}"
                     type="button"
                     class="btn-reset umb-block-list__create-button umb-outline blip-add-btn"
                     ng-click="vm.addBlock()">
                 <localize ng-if="vm.types.length !== 1" key="blockEditor_addBlock">Add content</localize>
-                <localize ng-if="vm.types.length === 1" key="blockEditor_addThis" tokens="[vm.types[0]._contentTypeName]">Add content</localize>
+                <localize ng-if="vm.types.length === 1" key="blockEditor_addThis" tokens="[vm.types[0].contentTypeName]">Add content</localize>
             </button>
 
             <button type="button"
@@ -43,7 +42,7 @@
                     ng-click="vm.createBlock()">
                 <umb-icon icon="icon-edit" class="icon"></umb-icon>
                 <span class="sr-only">
-                    <localize key="blockEditor_tabClipboard">Manage blocks</localize>
+                    <localize key="blip_manageBlocks">Manage blocks</localize>
                 </span>
             </button>
 

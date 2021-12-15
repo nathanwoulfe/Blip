@@ -8,11 +8,11 @@
 
         &:hover {
             border-right-color: #2152a3;
-        }
+        } 
     }
 }
 
-.blip-overlay {
+.blip-overlay .blip-has-view {
     .blip-block--checkbox {
         position:absolute;
         top:5px;

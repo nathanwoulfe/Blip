@@ -4,5 +4,6 @@
     <key alias="selectItem">Select item</key>
     <key alias="selectItems">Select items</key>
     <key alias="noBlocks">No blocks available</key>
+    <key alias="manageBlocks">Manage blocks</key>
   </area>
 </language>

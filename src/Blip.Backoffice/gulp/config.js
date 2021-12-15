@@ -4,7 +4,7 @@ const backofficePath = './src/Blip/Backoffice';
 // but build into /src
 
 export const paths = {
-    js: [`${backofficePath}/**/*.js`],
+    js: [`${backofficePath}/**/*.ts`],
     viewsDev: [`${backofficePath}/**/*.html`],
     viewsProd: [`${backofficePath}/**/*.html`, `!${backofficePath}/**/components/**/*.html`],
     scss: `${backofficePath}/**/*.scss`,
