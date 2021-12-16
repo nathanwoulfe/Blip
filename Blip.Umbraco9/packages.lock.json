@@ -1740,7 +1740,7 @@
           "Umbraco.Cms.Web.Common": "9.1.2"
         }
       },
-      "blip.web": {
+      "Blip.Umbraco.Web": {
         "type": "Project",
         "dependencies": {
           "Umbraco.Cms.Web.BackOffice": "9.0.0",

@@ -537,10 +537,10 @@
         "resolved": "4.0.0.1",
         "contentHash": "ApeeERIumXC8inaXMF+v0IMikazEp6N6axPqdAVDF6mQoY6K4tlyB3/H9iTIInlUus1ixLtPFHBa+EDzsDF8ng=="
       },
-      "blip.backoffice": {
+      "Blip.Umbraco.Backoffice": {
         "type": "Project"
       },
-      "blip.web": {
+      "Blip.Umbraco.Web": {
         "type": "Project",
         "dependencies": {
           "UmbracoCms.Web": "8.16.0"
@@ -2442,10 +2442,10 @@
           "Umbraco.Cms.PublishedCache.NuCache": "9.0.0"
         }
       },
-      "blip.backoffice": {
+      "Blip.Umbraco.Backoffice": {
         "type": "Project"
       },
-      "blip.web": {
+      "Blip.Umbraco.Web": {
         "type": "Project",
         "dependencies": {
           "Umbraco.Cms.Web.BackOffice": "9.0.0",

@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net5.0;net472</TargetFrameworks>
-    <Product>Blip.Umbraco</Product>
-    <Title>Blip.Umbraco</Title>
-    <Id>Blip.Umraco</Id>
+    <Product>Blip</Product>
+    <Title>Blip</Title>
+    <Id>Blip.Umbraco</Id>
     <PackageId>Blip.Umbraco</PackageId>
     <Description>Block List Item Picker for Umbraco CMS</Description>
     <IncludeBuildOutput>false</IncludeBuildOutput>

@@ -2,8 +2,9 @@
   <PropertyGroup>
     <TargetFrameworks>net5.0;net472</TargetFrameworks>
     <Id>Blip.Umbraco.Web</Id>
+    <PackageId>Blip.Umbraco.Web</PackageId>
     <Title>Blip.Umbraco.Web</Title>
-    <Description>The Blip.Web library - do not install this package directly, install Blip instead</Description>
+    <Description>The Blip.Umbraco.Web library - do not install this package directly, install Blip.Umbraco instead</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
