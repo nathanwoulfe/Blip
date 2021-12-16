@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ContentTargetFolders>.</ContentTargetFolders>
-    <Id>Blip.Backoffice</Id>
-    <Title>Blip.Backoffice</Title>
+    <Id>Blip.Umbraco.Backoffice</Id>
+    <Title>Blip.Umbraco.Backoffice</Title>
     <Description>The backoffice bits - do not install this package directly, install Blip instead</Description>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <IncludeSymbols>false</IncludeSymbols>

@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net5.0;net472</TargetFrameworks>
-    <Id>Blip.Web</Id>
-    <Title>Blip.Web</Title>
+    <Id>Blip.Umbraco.Web</Id>
+    <Title>Blip.Umbraco.Web</Title>
     <Description>The Blip.Web library - do not install this package directly, install Blip instead</Description>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
