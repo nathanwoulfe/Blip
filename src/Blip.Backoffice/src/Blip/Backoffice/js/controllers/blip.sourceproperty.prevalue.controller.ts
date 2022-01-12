@@ -20,10 +20,14 @@
         this.editorScope = this.getEditorScope();
 
         if (this.editorScope) {
-            this.editorScopeWatch = this.$scope.$watch(() => this.editorScope.vm.preValues, newVal => {
-                const sourceNode = newVal.find(x => x.alias === 'sourceNode');
-                if (!sourceNode.value) return;
+            this.editorScopeWatch = this.$scope.$watch(() => {
+                return this.editorScope.vm.dataType ? this.editorScope.vm.dataType.preValues : this.editorScope.vm.preValues;
+            }, newVal => {
+                if (!newVal) return;
 
+                const sourceNode = newVal.find(x => x.alias === 'sourceNode');
+                if (!sourceNode.value)
+                    return;
                 this.getSourceNode(sourceNode.value);
             }, true);
         }
@@ -51,8 +55,8 @@
         let editorScope = this.$scope.$parent;
         do {
             editorScope = editorScope.$parent;
-        } while (!Object.prototype.hasOwnProperty.call(editorScope, 'contentForm'));
-
+        } while (!Object.prototype.hasOwnProperty.call(editorScope, 'dataTypeSettingsForm')
+            && !Object.prototype.hasOwnProperty.call(editorScope, 'contentForm'));
         return editorScope;
     }
 
