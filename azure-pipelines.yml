@@ -49,7 +49,7 @@ steps:
    
       echo "prefix = $prefix | suffix = $suffix | build = $Env:BUILD_BUILDID"
       
-      If (($Env:BUILD_SOURCEBRANCH -eq '$(DEV_BRANCH)') -and $suffix) {
+      If ($suffix) {
         echo "##vso[task.setvariable variable=VERSION]$prefix-$suffix.$Env:BUILD_BUILDID" } 
       Else { 
         echo "##vso[task.setvariable variable=VERSION]$prefix" }
