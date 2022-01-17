@@ -147,6 +147,7 @@
             view: Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/Blip/Backoffice/blip.blockpicker.overlay.html',
             multiPicker: this.multiPicker,
             selection: this.blocks.filter(b => b._selected),
+            size: 'medium',
             blocks: this.blocks,
             submit: model => {
                 this.renderModel = model.selection;
@@ -166,6 +167,7 @@
      * */
     createBlock = () => {
         var editor = {
+            size: 'medium',
             id: this.sourceNode.id,
             submit: () => {
                 this.editorService.close();

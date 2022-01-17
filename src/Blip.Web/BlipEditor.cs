@@ -11,7 +11,7 @@ namespace Blip.Web
             alias: "NW.Blip",
             name: "Block List Item Picker",            
             view: "~/App_Plugins/Blip/Backoffice/blip.editor.html",
-            ValueType = ValueTypes.Text,
+            ValueType = ValueTypes.Json,
             Group = "Pickers",
             Icon = "icon-code")]
     public class BlipEditor : DataEditor
