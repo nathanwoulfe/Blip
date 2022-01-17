@@ -1,19 +1,31 @@
-﻿<div ng-controller="Blip.Editor.Controller as vm" class="blip">
+﻿<div ng-controller="Blip.Editor.Controller as vm" class="blip umb-block-list__wrapper">
     <ng-form name="blipForm">
 
         <div ui-sortable="vm.sortOptions" ng-model="vm.renderModel">
             <div ng-repeat="block in vm.renderModel track by block.udi">
-                <umb-node-preview ng-if="!block._view"
+
+                <!--<umb-node-preview ng-if="!block._view"
                                   name="block._label"
                                   icon="block._iconRaw"
                                   sortable="true"
                                   allow-remove="true"
                                   allow-edit="false"
                                   on-remove="vm.removeBlock(block.udi)">
-                </umb-node-preview>
-                <div ng-if="block._view" class="umb-block-list__block">
-                    <blip-block block="{ data: block }" view="{{ block._view }}" stylesheet="{{ block._stylesheet }}">
+                </umb-node-preview>-->
+                <div class="umb-block-list__block">
+                    <blip-block block="{ data: block }" view="{{ block._view }}" stylesheet="{{ block._stylesheet }}" ng-if="block._view">
                     </blip-block>
+
+                    <div ng-if="!block._view" class="umb-block-list__block">
+                        <div class="umb-block-list__block--content">
+                            <div class="umb-block-list__block--view">
+                                <div class="blockelement-labelblock-editor">
+                                    <umb-icon icon="{{ block._iconRaw}}" class="icon"></umb-icon>
+                                    <span>{{ block._label }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="umb-block-list__block--actions">
                         <button type="button" class="btn-reset umb-outline action --delete" localize="title" title="actions_delete"
@@ -38,6 +50,7 @@
             </button>
 
             <button type="button"
+                    ng-if="vm.userCanAddBlock"
                     class="btn-reset umb-block-list__clipboard-button umb-outline blip-manage-btn"
                     ng-click="vm.createBlock()">
                 <umb-icon icon="icon-edit" class="icon"></umb-icon>

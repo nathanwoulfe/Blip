@@ -1,6 +1,7 @@
 ﻿interface UmbNode {
     id: number;
     variants: Array<UmbVariant>;
+    allowedActions: Array<string>;
 }
 
 interface UmbVariant {

@@ -10,8 +10,13 @@
             border-right-color: #2152a3;
         } 
     }
-}
 
+    .blockelement-labelblock-editor {
+        width:auto;
+        cursor:move;
+    }
+}
+ 
 .blip-overlay .blip-has-view {
     .blip-block--checkbox {
         position:absolute;

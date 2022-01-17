@@ -64,7 +64,7 @@ namespace Blip.Web
 
         public object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) => source;
 
-        public PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) => PropertyCacheLevel.Snapshot;
+        public PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) => PropertyCacheLevel.Elements;
 
         public Type GetPropertyValueType(IPublishedPropertyType propertyType) => typeof(BlockListModel);
 

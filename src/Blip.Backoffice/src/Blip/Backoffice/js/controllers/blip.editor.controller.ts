@@ -7,10 +7,12 @@
     types: Array<UmbBlock> = [];
 
     loading: boolean = false;
+    userCanAddBlock: boolean = true;
+    multiPicker: boolean;
+
     config: any;
     minNumberOfItems: number;
     maxNumberOfItems: number;
-    multiPicker: boolean;
     sortableOptions: any;
 
     sourceNode!: UmbNode;
@@ -198,7 +200,6 @@
     preSelect = () => this.blocks.forEach(b => b._selected = this.$scope.model.value.includes(b.udi));
 
 
-
     /**
      * 
      * */
@@ -209,6 +210,9 @@
             .then(result => {
                 this.sourceNode = result;
                 const sourceProperty = this.blipResource.getSourceProperty(this.sourceNode, this.config.sourceProperty);
+
+                // does the current user have edit permissions on the source node?
+                this.userCanAddBlock = this.sourceNode.allowedActions.includes('A');                  
 
                 this.blipResource.getBlockData(sourceProperty)
                     .then(_ => {
@@ -224,6 +228,7 @@
                             this.syncRenderModel();
                             this.subscribe();
                         }
+
                         this.validate();
 
                         this.loading = false;
