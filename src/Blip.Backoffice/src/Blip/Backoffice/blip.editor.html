@@ -57,7 +57,7 @@
              ng-if="vm.multiPicker && (vm.maxNumberOfItems > 1 || vm.minNumberOfItems > 0) && (vm.renderModel.length !== 0 || (model.validation && model.validation.mandatory))">
 
             <!-- Both min and max items -->
-            <span ng-if="vm.minNumberOfItems !== vm.maxNumberOfItems">
+            <span ng-if="vm.minNumberOfItems && vm.maxNumberOfItems && vm.minNumberOfItems !== vm.maxNumberOfItems">
                 <span ng-if="vm.renderModel.length < vm.maxNumberOfItems">Add between {{vm.minNumberOfItems}} and {{vm.maxNumberOfItems}} items</span>
                 <span ng-if="vm.renderModel.length > vm.maxNumberOfItems">
                     <localize key="validation_maxCount">You can only have</localize> {{vm.maxNumberOfItems}} <localize key="validation_itemsSelected"> items selected</localize>
@@ -65,7 +65,7 @@
             </span>
 
             <!-- Equal min and max -->
-            <span ng-if="vm.minNumberOfItems === vm.maxNumberOfItems">
+            <span ng-if="vm.minNumberOfItems && vm.maxNumberOfItems && vm.minNumberOfItems  === vm.maxNumberOfItems">
                 <span ng-if="vm.renderModel.length < vm.maxNumberOfItems">Add {{vm.minNumberOfItems - vm.renderModel.length}} item(s)</span>
                 <span ng-if="vm.renderModel.length > vm.maxNumberOfItems">
                     <localize key="validation_maxCount">You can only have</localize> {{vm.maxNumberOfItems}} <localize key="validation_itemsSelected"> items selected</localize>

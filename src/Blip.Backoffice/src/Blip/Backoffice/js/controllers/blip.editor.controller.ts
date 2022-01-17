@@ -115,7 +115,7 @@
             this.$scope.model.value = this.renderModel.map(r => r.udi);
         });
 
-        this.onRenderModelChange = this.$scope.$watch('this.renderModel', (newVal, oldVal) => {
+        this.onRenderModelChange = this.$scope.$watch(() => this.renderModel, (newVal, oldVal) => {
             if (newVal !== oldVal) {
                 this.validate();
             }
@@ -131,10 +131,10 @@
 
         const hasItemsOrMandatory = this.renderModel.length !== 0 || (this.$scope.model.validation && this.$scope.model.validation.mandatory);
 
-        const validMinCount = hasItemsOrMandatory && this.minNumberOfItems <= this.renderModel.length;
+        const validMinCount = hasItemsOrMandatory && this.minNumberOfItems && this.minNumberOfItems <= this.renderModel.length;
         this.$scope.blipForm.minCount.$setValidity('minCount', validMinCount);
 
-        const validMaxCount = this.maxNumberOfItems >= this.renderModel.length;
+        const validMaxCount = this.maxNumberOfItems && this.maxNumberOfItems >= this.renderModel.length;
         this.$scope.blipForm.maxCount.$setValidity('maxCount', validMaxCount);
     }
 

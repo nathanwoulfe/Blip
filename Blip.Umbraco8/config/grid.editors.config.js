@@ -46,5 +46,20 @@
             "style": "border-left: 3px solid #ccc; padding: 10px; color: #ccc; font-family: serif; font-style: italic; font-size: 18px",
             "markup": "<blockquote>#value#</blockquote>"
         }
-    }
+    },
+    {
+        "name": "BLIP",
+        "alias": "blip",
+        "view": "/App_Plugins/DocTypeGridEditor/Views/doctypegrideditor.html",
+        "render": "/App_Plugins/DocTypeGridEditor/Render/DocTypeGridEditor.cshtml",
+        "icon": "icon-pictures-alt",
+        "config": {
+            "allowedDocTypes": ["^gridBLIPTest"],
+            "nameTemplate": "",
+            "enablePreview": true,
+            "overlaySize": "medium",
+            "viewPath": "/Views/Partials/Grid/Editors/DocTypeGridEditor/",
+            "previewViewPath": "/Views/Partials/Grid/Editors/DocTypeGridEditor/Previews/"
+        }
+    },
 ]

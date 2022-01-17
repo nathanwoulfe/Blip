@@ -254,6 +254,12 @@
         "resolved": "3.9.4",
         "contentHash": "XnWlzHZnbGLRZmMmJJZFSzZFY+HUWaYEHAtwgBeEev0SOFA8Ng9ppX7Wc/kqnuz3LZamrWxfv1mOmcRIpe9nEg=="
       },
+      "Our.Umbraco.DocTypeGridEditor": {
+        "type": "Direct",
+        "requested": "[1.2.9, 1.2.9]",
+        "resolved": "1.2.9",
+        "contentHash": "3osDgUf27Qx/i3os2Pu+ogb5DubKeA3afPOXB5s0qJBGnSTZY7ANEx/ZgypApxXf8rrLSreXIN2jtJBH1wex1g=="
+      },
       "Owin": {
         "type": "Direct",
         "requested": "[1.0.0, 1.0.0]",
