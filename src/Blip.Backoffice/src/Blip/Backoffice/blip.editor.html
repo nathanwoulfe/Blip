@@ -3,15 +3,6 @@
 
         <div ui-sortable="vm.sortOptions" ng-model="vm.renderModel">
             <div ng-repeat="block in vm.renderModel track by block.udi">
-
-                <!--<umb-node-preview ng-if="!block._view"
-                                  name="block._label"
-                                  icon="block._iconRaw"
-                                  sortable="true"
-                                  allow-remove="true"
-                                  allow-edit="false"
-                                  on-remove="vm.removeBlock(block.udi)">
-                </umb-node-preview>-->
                 <div class="umb-block-list__block">
                     <blip-block block="{ data: block }" view="{{ block._view }}" stylesheet="{{ block._stylesheet }}" ng-if="block._view">
                     </blip-block>

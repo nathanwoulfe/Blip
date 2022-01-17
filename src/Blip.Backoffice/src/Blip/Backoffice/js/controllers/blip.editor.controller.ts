@@ -150,6 +150,8 @@
             blocks: this.blocks,
             submit: model => {
                 this.renderModel = model.selection;
+                this.$scope.model.value = this.renderModel.map(r => r.udi);
+
                 this.editorService.close();
             },
             close: () => this.editorService.close()
