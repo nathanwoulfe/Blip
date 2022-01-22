@@ -1,6 +1,5 @@
 ﻿<div ng-controller="Blip.Editor.Controller as vm" class="blip umb-block-list__wrapper">
     <ng-form name="blipForm">
-
         <div ui-sortable="vm.sortOptions" ng-model="vm.renderModel">
             <div ng-repeat="block in vm.renderModel track by block.udi">
                 <div class="umb-block-list__block">
@@ -31,9 +30,14 @@
             </div>
         </div>
 
-        <div class="umb-block-list__actions" ng-if="vm.loading !== true">
+        <umb-empty-state ng-if="(!vm.blocks || !vm.blocks.length) && !vm.loading">
+            <localize key="content_listViewNoItems">There are no items show in the list.</localize>
+        </umb-empty-state>
+
+        <div class="umb-block-list__actions">
             <button id="{{ vm.model.alias }}"
                     type="button"
+                    ng-disabled="!vm.blocks || !vm.blocks.length"
                     class="btn-reset umb-block-list__create-button umb-outline blip-add-btn"
                     ng-click="vm.addBlock()">
                 <localize ng-if="vm.types.length !== 1" key="blockEditor_addBlock">Add content</localize>

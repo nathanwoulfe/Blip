@@ -22,6 +22,10 @@
 
         return this.contentResource.getScaffoldByKeys(-20, scaffoldKeys)
             .then(scaffolds => {
+                if (!sourceProperty.value.contentData) {
+                    return;
+                }
+
                 sourceProperty.value.contentData.forEach((block: IBlipBlock, idx) => {
 
                     const blockConfig = sourceProperty.config.blocks.find(b => b.contentElementTypeKey === block.contentTypeKey);

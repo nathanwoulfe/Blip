@@ -129,12 +129,12 @@
     validate = () => {
         if (!this.$scope.blipForm) return;
 
-        const hasItemsOrMandatory = this.renderModel.length !== 0 || (this.$scope.model.validation && this.$scope.model.validation.mandatory);
+        const passesMandatoryCheck = (this.$scope.model.validation?.mandatory && this.renderModel.length) || !this.$scope.model.validation || !this.$scope.model.validation?.mandatory;
+        const validMinCount = this.minNumberOfItems <= this.renderModel.length;
 
-        const validMinCount = hasItemsOrMandatory && this.minNumberOfItems && this.minNumberOfItems <= this.renderModel.length;
-        this.$scope.blipForm.minCount.$setValidity('minCount', validMinCount);
+        this.$scope.blipForm.minCount.$setValidity('minCount', validMinCount && passesMandatoryCheck);
 
-        const validMaxCount = this.maxNumberOfItems && this.maxNumberOfItems >= this.renderModel.length;
+        const validMaxCount = !this.maxNumberOfItems || this.maxNumberOfItems >= this.renderModel.length;
         this.$scope.blipForm.maxCount.$setValidity('maxCount', validMaxCount);
     }
 
@@ -213,10 +213,16 @@
         this.contentResource.getById(this.config.sourceNode)
             .then(result => {
                 this.sourceNode = result;
-                const sourceProperty = this.blipResource.getSourceProperty(this.sourceNode, this.config.sourceProperty);
 
                 // does the current user have edit permissions on the source node?
-                this.userCanAddBlock = this.sourceNode.allowedActions.includes('A');                  
+                this.userCanAddBlock = this.sourceNode.allowedActions.includes('A');  
+
+                const sourceProperty = this.blipResource.getSourceProperty(this.sourceNode, this.config.sourceProperty);
+
+                if (!sourceProperty.value) {
+                    this.loading = false;
+                    return;
+                }
 
                 this.blipResource.getBlockData(sourceProperty)
                     .then(_ => {
