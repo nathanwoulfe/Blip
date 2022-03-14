@@ -2,7 +2,7 @@
 
     public static serviceName = 'blipResource';
 
-    constructor(private contentResource, private $interpolate) { }
+    constructor(private blipContentResource, private $interpolate) { }
 
 
     /**
@@ -18,9 +18,9 @@
             scaffoldKeys.push(block.settingsElementTypeKey);
         });
 
-        scaffoldKeys = scaffoldKeys.filter((value, index, self) => self.indexOf(value) === index);
+        scaffoldKeys = scaffoldKeys.filter((value, index, self) => self.indexOf(value) === index).filter(x => !!x);
 
-        return this.contentResource.getScaffoldByKeys(-20, scaffoldKeys)
+        return this.blipContentResource.getScaffoldByKeys(-20, scaffoldKeys)
             .then(scaffolds => {
                 if (!sourceProperty.value.contentData) {
                     return;

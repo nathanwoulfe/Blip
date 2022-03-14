@@ -20,7 +20,7 @@
     onFormSubmitting!: Function;
     onRenderModelChange!: Function;
 
-    constructor(private $scope, private editorService, private contentResource, private blipResource) {
+    constructor(private $scope, private editorService, private blipContentResource, private blipResource) {
 
         this.$scope.model.value = this.$scope.model.value || [];
 
@@ -167,7 +167,7 @@
      * */
     createBlock = () => {
         var editor = {
-            size: 'medium',
+            size: 'large',
             id: this.sourceNode.id,
             submit: () => {
                 this.editorService.close();
@@ -200,6 +200,14 @@
 
     /**
      * 
+     * @param block
+     */
+    previewBlock = block => {
+        console.log(block);
+    }
+
+    /**
+     * 
      */
     preSelect = () => this.blocks.forEach(b => b._selected = this.$scope.model.value.includes(b.udi));
 
@@ -210,12 +218,12 @@
     init = (isRefresh?: boolean) => {
         this.loading = true;
 
-        this.contentResource.getById(this.config.sourceNode)
+        this.blipContentResource.getById(this.config.sourceNode)
             .then(result => {
                 this.sourceNode = result;
 
                 // does the current user have edit permissions on the source node?
-                this.userCanAddBlock = this.sourceNode.allowedActions.includes('A');  
+                this.userCanAddBlock = this.sourceNode.allowedActions.includes('A');               
 
                 const sourceProperty = this.blipResource.getSourceProperty(this.sourceNode, this.config.sourceProperty);
 

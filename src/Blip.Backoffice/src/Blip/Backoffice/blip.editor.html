@@ -18,9 +18,16 @@
                     </div>
 
                     <div class="umb-block-list__block--actions">
+                        <button type="button" class="btn-reset umb-outline action --preview" localize="title" title="general_preview"
+                                ng-click="vm.previewBlock(block)">
+                            <umb-icon icon="icon-eye"></umb-icon>
+                            <span class="sr-only">
+                                <localize key="general_preview">Preview</localize>
+                            </span>
+                        </button>
                         <button type="button" class="btn-reset umb-outline action --delete" localize="title" title="actions_delete"
                                 ng-click="vm.removeBlock(block.udi)">
-                            <umb-icon icon="icon-trash" class="icon"></umb-icon>
+                            <umb-icon icon="icon-trash"></umb-icon>
                             <span class="sr-only">
                                 <localize key="general_delete">Delete</localize>
                             </span>
