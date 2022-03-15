@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 #if NETCOREAPP
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core;
@@ -9,7 +10,6 @@ using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.ContentEditing;
-using Umbraco.Cms.Core.Models.Membership;
 using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Security;
 using Umbraco.Cms.Core.Services;
@@ -23,7 +23,6 @@ using Umbraco.Core.Composing;
 using Umbraco.Core.Dictionary;
 using Umbraco.Core.Mapping;
 using Umbraco.Core.Models;
-using Umbraco.Core.Models.Membership;
 using Umbraco.Core.Scoping;
 using Umbraco.Core.Services;
 using Umbraco.Web.Actions;
@@ -39,6 +38,19 @@ namespace Blip.Web
     {
         public Guid[] ContentTypeKeys { get; set; }
         public int ParentId { get; set; }
+    }
+
+    [DataContract(Name = "content", Namespace = "")]
+    public class ContentSlim
+    {
+        [DataMember(Name = "variants")]
+        public IEnumerable<ContentVariantDisplay> Variants { get; set; }
+        
+        [DataMember(Name = "id")]
+        public int Id { get; set; }
+
+        [DataMember(Name = "allowedActions")]
+        public IEnumerable<string> AllowedActions { get; set; }
     }
 
     [PluginController("Blip")]
@@ -85,7 +97,7 @@ namespace Blip.Web
         }
 
 
-        public ContentItemDisplay GetById(Udi id)
+        public ContentSlim GetById(Udi id)
         {
             var guidUdi = id as GuidUdi;
             if (guidUdi == null) return null;
@@ -100,6 +112,13 @@ namespace Blip.Web
                 context.Items["CurrentUser"] = currentUser;
             });
 
+            var slim = new ContentSlim
+            {
+                Id = content.Id,
+                Variants = content.Variants,
+                AllowedActions = content.AllowedActions,
+            };
+
             // if the user has a start Id, and the node is outside any of those ids,
             // remove the browse permission
             if (currentUser.StartContentIds.Any())
@@ -107,14 +126,14 @@ namespace Blip.Web
                 var pathIds = foundContent.Path.Split(',').Select(int.Parse);
                 if (!pathIds.Intersect(currentUser.StartContentIds).Any())
                 {
-                    content.AllowedActions = content.AllowedActions.Except(new string[]{
+                    slim.AllowedActions = content.AllowedActions.Except(new string[]{
                             ActionBrowse.ActionLetter.ToString(),
                             ActionUpdate.ActionLetter.ToString()
                         });
                 }
             }
 
-            return content;
+            return slim;
         }
 
         /// <summary>

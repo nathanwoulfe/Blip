@@ -200,14 +200,6 @@
 
     /**
      * 
-     * @param block
-     */
-    previewBlock = block => {
-        console.log(block);
-    }
-
-    /**
-     * 
      */
     preSelect = () => this.blocks.forEach(b => b._selected = this.$scope.model.value.includes(b.udi));
 
@@ -234,7 +226,6 @@
 
                 this.blipResource.getBlockData(sourceProperty)
                     .then(_ => {
-
                         this.blocks = sourceProperty.value.contentData;
                         this.types = sourceProperty.config.blocks;
 
