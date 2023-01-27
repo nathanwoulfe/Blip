@@ -1,0 +1,28 @@
+<svg width="239.99999999999997" height="239.99999999999997" xmlns="http://www.w3.org/2000/svg" class="feather feather-refresh-cw" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none">
+ <g id="Layer_1">
+  <title>Layer 1</title>
+  <path id="svg_1" d="m120.79839,229.66365c-60.77348,0 -110,-49.22652 -110,-110c0,-60.77348 49.22652,-110 110,-110c60.77348,0 110,49.22652 110,110c0,60.77348 -49.22652,110 -110,110z" opacity="undefined" stroke-width="6" stroke="#1b264f" fill="#f5c1bc"/>
+  <g id="svg_33">
+   <g stroke-width="6" stroke="null">
+    <line stroke="#1b264f" y2="120.01752" x2="155.03255" y1="120.01752" x1="104.42998"/>
+    <line stroke="#1b264f" y2="143.37255" x2="155.03255" y1="143.37255" x1="104.42998"/>
+    <line stroke="#1b264f" y2="166.72759" x2="155.03255" y1="166.72759" x1="104.42998"/>
+    <line stroke="#1b264f" y2="120.01752" x2="85.00638" y1="120.01752" x1="84.96745"/>
+    <line stroke="#1b264f" y2="143.37255" x2="85.00638" y1="143.37255" x1="84.96745"/>
+    <line stroke="#1b264f" y2="166.72759" x2="85.00638" y1="166.72759" x1="84.96745"/>
+   </g>
+   <g id="svg_32" stroke-width="6" stroke="null">
+    <line id="svg_26" stroke="#1b264f" y2="73.27242" x2="155.03255" y1="73.27242" x1="104.42998"/>
+    <line id="svg_27" stroke="#1b264f" y2="96.62745" x2="155.03255" y1="96.62745" x1="104.42998"/>
+    <line id="svg_28" stroke="#1b264f" y2="119.98248" x2="155.03255" y1="119.98248" x1="104.42998"/>
+    <line id="svg_29" stroke="#1b264f" y2="73.27242" x2="85.00638" y1="73.27242" x1="84.96745"/>
+    <line id="svg_30" stroke="#1b264f" y2="96.62745" x2="85.00638" y1="96.62745" x1="84.96745"/>
+    <line id="svg_31" stroke="#1b264f" y2="119.98248" x2="85.00638" y1="119.98248" x1="84.96745"/>
+   </g>
+  </g>
+  <g opacity="undefined" stroke="#1b264f" fill="#f5c1bc" stroke-width="6">
+   <polyline stroke="#1b264f" points="96.05149841308594,135.90868851542473 85.05149841308594,146.90868851542473 80.05149841308594,141.90868851542473 "/>
+  </g>
+ </g>
+
+</svg>
