@@ -12,7 +12,7 @@ parameters:
 
 variables:
   nodeVersion: 16.17.x
-  solution: Preflight.sln
+  solution: Blip.sln
   buildConfiguration: Release
   DOTNET_NOLOGO: true
   DOTNET_GENERATE_ASPNET_CERTIFICATE: false
