@@ -1,28 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
-    <TargetFrameworks>net5.0;net472</TargetFrameworks>
-    <Product>Blip</Product>
-    <Title>Blip</Title>
-    <Id>Blip.Umbraco</Id>
     <PackageId>Blip.Umbraco</PackageId>
-    <Description>Block List Item Picker for Umbraco CMS</Description>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <Title>Blip</Title>
+    <Description>Block List item picker for Umbraco CMS</Description>
+    <PackageTags>umbraco umbraco-cms umbraco-marketplace</PackageTags>
     <IncludeSymbols>false</IncludeSymbols>
+    <StaticWebAssetBasePath>App_Plugins/Blip</StaticWebAssetBasePath>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
-  <Target Name="RemoveLuceneAnalyzer" BeforeTargets="CoreCompile">
-    <ItemGroup>
-      <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Lucene.Net.CodeAnalysis.CSharp'" />
-    </ItemGroup>
-  </Target>
+
   <ItemGroup>
-    <ProjectReference Include="..\Blip.Web\Blip.Web.csproj" />
-    <ProjectReference Include="..\Blip.Backoffice\Blip.Backoffice.csproj" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0, 11)" />
+    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0, 11)" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
-    <PackageReference Include="UmbracoCms.Core" Version="8.16.0" />
-    <PackageReference Include="UmbracoCms.Web" Version="8.16.0" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.0.0" />
-  </ItemGroup>
+
+  <Import Project="build\Microsoft.AspNetCore.ClientAssets.targets" />
+  <Target Name="ClientAssetsBuildOutputPath" AfterTargets="ClientAssetsBuild">
+    <WriteLinesToFile File="Backoffice\gulp\config.outputPath.js" Lines="export const outputPath = '../$(IntermediateOutputPath.Replace('\', '/'))clientassets';" Overwrite="true" />
+  </Target>
 </Project>

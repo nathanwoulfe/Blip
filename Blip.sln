@@ -5,31 +5,23 @@ VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4EBC1AA9-1FA5-4EB2-B668-9EE28D04EB1F}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
+		.globalconfig = .globalconfig
 		azure-pipelines.yml = azure-pipelines.yml
 		Directory.Build.Props = Directory.Build.Props
+		global.json = global.json
+		LICENSE.md = LICENSE.md
 		localbuild.ps1 = localbuild.ps1
 		NuGet.config = NuGet.config
 		README.md = README.md
+		umbraco-marketplace.json = umbraco-marketplace.json
+		version.json = version.json
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip", "src\Blip\Blip.csproj", "{DE0C051C-7BFB-417B-BE42-DFD57C68E920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip", "src\Blip\Blip.csproj", "{9CB87F52-E8CD-44E0-851E-F8994F32E50D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip.Web", "src\Blip.Web\Blip.Web.csproj", "{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip.Backoffice", "src\Blip.Backoffice\Blip.Backoffice.csproj", "{4F4B11AD-30A8-40D0-A367-091DF5AA76DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blip.Umbraco8", "Blip.Umbraco8\Blip.Umbraco8.csproj", "{7C2ABFB4-0565-4F63-AE72-D77DA5DD3D04}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920} = {DE0C051C-7BFB-417B-BE42-DFD57C68E920}
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6} = {9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip.Umbraco9", "Blip.Umbraco9\Blip.Umbraco9.csproj", "{039285F9-61DB-4DCC-A73B-FCF9FAB9E09C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920} = {DE0C051C-7BFB-417B-BE42-DFD57C68E920}
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6} = {9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip.Site", "Blip.Site\Blip.Site.csproj", "{4A0555EA-85BD-467D-997F-532C619E2487}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,26 +29,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE0C051C-7BFB-417B-BE42-DFD57C68E920}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A97C7FC-B713-4A81-B971-6DAE4B07EFB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F4B11AD-30A8-40D0-A367-091DF5AA76DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F4B11AD-30A8-40D0-A367-091DF5AA76DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F4B11AD-30A8-40D0-A367-091DF5AA76DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F4B11AD-30A8-40D0-A367-091DF5AA76DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C2ABFB4-0565-4F63-AE72-D77DA5DD3D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C2ABFB4-0565-4F63-AE72-D77DA5DD3D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C2ABFB4-0565-4F63-AE72-D77DA5DD3D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C2ABFB4-0565-4F63-AE72-D77DA5DD3D04}.Release|Any CPU.Build.0 = Release|Any CPU
-		{039285F9-61DB-4DCC-A73B-FCF9FAB9E09C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{039285F9-61DB-4DCC-A73B-FCF9FAB9E09C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{039285F9-61DB-4DCC-A73B-FCF9FAB9E09C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{039285F9-61DB-4DCC-A73B-FCF9FAB9E09C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0555EA-85BD-467D-997F-532C619E2487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0555EA-85BD-467D-997F-532C619E2487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0555EA-85BD-467D-997F-532C619E2487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0555EA-85BD-467D-997F-532C619E2487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
