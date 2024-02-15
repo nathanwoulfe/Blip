@@ -1,6 +1,6 @@
 {
   "name": "blip",
-  "version": "10.0.0",
+  "version": "13.0.0",
   "url": "http://our.umbraco.org/projects/developer-tools/my-awesome-package",
   "description": "Block List Item Picker for Umbraco",
   "license": "MIT",
