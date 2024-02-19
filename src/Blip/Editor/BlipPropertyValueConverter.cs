@@ -10,7 +10,7 @@ using Umbraco.Extensions;
 
 namespace Blip.Editor;
 
-public class BlipPropertyValueConverter : PropertyValueConverterBase, IDeliveryApiPropertyValueConverter
+public class BlipPropertyValueConverter : IPropertyValueConverter, IDeliveryApiPropertyValueConverter
 {
     private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
     private readonly IApiElementBuilder _apiElementBuilder;
@@ -66,17 +66,23 @@ public class BlipPropertyValueConverter : PropertyValueConverterBase, IDeliveryA
         return new BlockListModel(blocks.ToList());
     }
 
+    /// <inheritdoc />
     public object? ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview)
         => inter?.ToString() ?? null;
 
+    /// <inheritdoc />
     public object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) => source;
 
+    /// <inheritdoc/>
     public PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) => PropertyCacheLevel.Elements;
 
+    /// <inheritdoc />
     public Type GetPropertyValueType(IPublishedPropertyType propertyType) => typeof(BlockListModel);
 
+    /// <inheritdoc />
     public bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorAlias.ToLower().Equals("nw.blip");
 
+    /// <inheritdoc />
     public bool? IsValue(object? value, PropertyValueLevel level)
         => level switch
         {
