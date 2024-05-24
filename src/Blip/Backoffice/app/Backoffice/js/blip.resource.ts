@@ -31,10 +31,13 @@ export class BlipResource {
           const blockConfig = sourceProperty.config.blocks.find(b => b.contentElementTypeKey === block.contentTypeKey);
           const contentType = scaffolds[block.contentTypeKey];
 
+          const layoutData = sourceProperty.value.layout[sourceProperty.editor].find(l => l.contentUdi === block.udi);
+          const settingsData = layoutData && layoutData.settingsUdi ? sourceProperty.value.settingsData.find(d => d.udi === layoutData.settingsUdi) : {};
+
           if (blockConfig.label) {
             const labelVars = Object.assign({
               '$contentTypeName': contentType.contentTypeName,
-              '$settings': block.settingsTypeKey ? scaffolds[block.settingsTypeKey] : {},
+              '$settings': settingsData || {},
               '$layout': block.layout || {},
               '$index': idx + 1,
             }, block);
