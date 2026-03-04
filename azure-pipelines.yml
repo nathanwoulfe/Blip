@@ -11,7 +11,7 @@ parameters:
     default: false
 
 variables:
-  nodeVersion: 16.17.x
+  nodeVersion: '=22'
   solution: Blip.sln
   buildConfiguration: Release
   DOTNET_NOLOGO: true

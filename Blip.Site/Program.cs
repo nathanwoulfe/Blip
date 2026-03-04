@@ -3,17 +3,12 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
-    .AddDeliveryApi()
     .AddComposers()
     .Build();
 
 WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();
-
-#if UseHttpsRedirect
-app.UseHttpsRedirection();
-#endif
 
 app.UseUmbraco()
     .WithMiddleware(u =>
@@ -23,7 +18,6 @@ app.UseUmbraco()
     })
     .WithEndpoints(u =>
     {
-        u.UseInstallerEndpoints();
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });

@@ -1,0 +1,22 @@
+{
+  "name": "blip",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "watch": "vite build --watch",
+    "preview": "vite preview",
+    "generate:api": "openapi-ts"
+  },
+  "peerDependencies": {
+    "@umbraco-cms/backoffice": "17.2.0"
+  },
+  "devDependencies": {
+    "@hey-api/client-fetch": "^0.13.0",
+    "@hey-api/openapi-ts": "^0.85.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4"
+  }
+}

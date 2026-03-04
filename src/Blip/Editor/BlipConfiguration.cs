@@ -5,15 +5,15 @@ namespace Blip.Editor;
 
 public class BlipConfiguration
 {
-    [ConfigurationField("sourceNode", "Source node", "treepicker", Description = "The node containing the Block List editor")]
+    [ConfigurationField("sourceNode")]
     public Udi? SourceNode { get; set; }
 
-    [ConfigurationField("sourceProperty", "Source property", "/App_Plugins/Blip/Backoffice/views/blip.sourceproperty.prevalue.html", Description = "The property containing the Block List data")]
+    [ConfigurationField("sourceProperty")]
     public string? SourceProperty { get; set; }
 
-    [ConfigurationField("minNumber", "Minimum number of items", "number")]
+    [ConfigurationField("minNumber")]
     public int MinNumber { get; set; }
 
-    [ConfigurationField("maxNumber", "Maximum number of items", "number")]
+    [ConfigurationField("maxNumber")]
     public int MaxNumber { get; set; }
 }

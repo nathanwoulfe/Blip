@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.DeliveryApi;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.DeliveryApi;
@@ -10,16 +11,13 @@ using Umbraco.Extensions;
 
 namespace Blip.Editor;
 
-public class BlipPropertyValueConverter : IPropertyValueConverter, IDeliveryApiPropertyValueConverter
+public class BlipPropertyValueConverter(
+    IPublishedContentCache publishedContentCache,
+    IApiElementBuilder apiElementBuilder)
+    : IPropertyValueConverter, IDeliveryApiPropertyValueConverter
 {
-    private readonly IPublishedSnapshotAccessor _publishedSnapshotAccessor;
-    private readonly IApiElementBuilder _apiElementBuilder;
-
-    public BlipPropertyValueConverter(IPublishedSnapshotAccessor publishedSnapshotAccessor, IApiElementBuilder apiElementBuilder)
-    {
-        _publishedSnapshotAccessor = publishedSnapshotAccessor;
-        _apiElementBuilder = apiElementBuilder;
-    }
+    private readonly IPublishedContentCache _publishedContentCache = publishedContentCache;
+    private readonly IApiElementBuilder _apiElementBuilder = apiElementBuilder;
 
     public object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview)
     {
@@ -38,8 +36,12 @@ public class BlipPropertyValueConverter : IPropertyValueConverter, IDeliveryApiP
             return null;
         }
 
-        _ = _publishedSnapshotAccessor.TryGetPublishedSnapshot(out IPublishedSnapshot? publishedSnapshot);
-        IPublishedContent? sourceNode = publishedSnapshot?.Content?.GetById(configuration.SourceNode);
+        if (configuration.SourceNode is not GuidUdi sourceUdi)
+        {
+            return null;
+        }
+
+        IPublishedContent? sourceNode = _publishedContentCache.GetById(sourceUdi.Guid);
         BlockListModel? sourceProperty = sourceNode?.Value<BlockListModel>(configuration.SourceProperty);
 
         List<string?>? blockUdis = JsonConvert.DeserializeObject<List<string?>>(sourceString);
@@ -53,7 +55,14 @@ public class BlipPropertyValueConverter : IPropertyValueConverter, IDeliveryApiP
 
         foreach (string? udi in blockUdis)
         {
-            BlockListItem? block = sourceProperty.FirstOrDefault(x => x.ContentUdi.ToString() == udi);
+            if (string.IsNullOrEmpty(udi))
+            {
+                continue;
+            }
+
+            // match stored UDI strings against block content keys
+            BlockListItem? block = sourceProperty.FirstOrDefault(x =>
+                Udi.Create(Constants.UdiEntityType.Element, x.Content.Key).ToString() == udi);
 
             if (block is null)
             {

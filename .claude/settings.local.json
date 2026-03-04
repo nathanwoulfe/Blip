@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "WebSearch",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:docs.umbraco.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git ls-remote:*)",
+      "Bash(git clone:*)"
+    ]
+  }
+}

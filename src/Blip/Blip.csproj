@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <PackageId>Blip.Umbraco</PackageId>
     <Title>Blip</Title>
@@ -11,13 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
-    <PackageReference Include="Umbraco.Cms.Web.Website" Version="[13.0.3, 14)" />
-    <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[13.0.3, 14)" />
+    <PackageReference Include="Umbraco.Cms.Web.Common"></PackageReference>
+    <PackageReference Include="Umbraco.Cms.Api.Management"></PackageReference>
   </ItemGroup>
 
-  <Import Project="build\Microsoft.AspNetCore.ClientAssets.targets" />
-  <Target Name="ClientAssetsBuildOutputPath" AfterTargets="ClientAssetsBuild">
-    <WriteLinesToFile File="Backoffice\gulp\config.outputPath.js" Lines="export const outputPath = '../$(IntermediateOutputPath.Replace('\', '/'))clientassets';" Overwrite="true" />
-  </Target>
+  <ItemGroup>
+    <Folder Include="Client\generated\" />
+  </ItemGroup>
 </Project>
