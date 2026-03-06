@@ -3,7 +3,7 @@ import { defineConfig } from "@hey-api/openapi-ts";
 export default defineConfig({
   debug: true,
   input:
-    "http://localhost:23901/umbraco/swagger/blip-management/swagger.json",
+    "http://localhost:48740/umbraco/swagger/blip-management/swagger.json",
   output: {
     path: "generated",
   },

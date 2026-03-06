@@ -8,7 +8,13 @@
     <StaticWebAssetBasePath>App_Plugins/Blip</StaticWebAssetBasePath>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc> 
   </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms.Web.Common"></PackageReference>
@@ -16,6 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Client\generated\" />
+    <Content Include="wwwroot\**\*" Pack="true" />
   </ItemGroup>
+
+  <!-- Update umbraco-package.json files with current build version -->
+  <!-- Assumes that the client assets have already been built to wwwroot -->
+  <Target Name="UpdatePackageManifestVersion" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion;GetUmbracoBuildVersion" Condition="Exists('wwwroot\umbraco-package.json')">
+    <Message Text="Update umbraco-package.json files with current build version" Importance="high" />
+    <ItemGroup>
+      <_PackageManifestFiles Include="wwwroot\umbraco-package.json" />
+    </ItemGroup>
+    <JsonPathUpdateValue JsonFile="%(_PackageManifestFiles.FullPath)" Path="$.version" Value="&quot;$(PackageVersion)&quot;" />
+  </Target>
 </Project>

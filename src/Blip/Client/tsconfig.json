@@ -24,6 +24,7 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [ "src" ],
+  "exclude": [ "src/Backoffice"],
   "types": [
     "@umbraco-cms/backoffice/extension-types"
   ]

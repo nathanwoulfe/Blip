@@ -8,7 +8,16 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(git ls-remote:*)",
-      "Bash(git clone:*)"
+      "Bash(git clone:*)",
+      "Bash(find:*)",
+      "Bash(dotnet list:*)",
+      "Bash(gh api:*)",
+      "Bash(gh search code:*)",
+      "Bash(gh.exe search code:*)",
+      "Bash(where:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(npx tsc:*)",
+      "Bash(node -e:*)"
     ]
   }
 }

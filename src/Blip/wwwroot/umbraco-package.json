@@ -1,0 +1,12 @@
+{
+  "name": "Blip",
+  "version": "",
+  "extensions": [
+    {
+      "name": "Blip Backoffice EntryPoint",
+      "alias": "Blip.BackofficeEntryPoint",
+      "type": "backofficeEntryPoint",
+      "js": "/App_Plugins/Blip/blip.js"
+    }
+  ]
+}

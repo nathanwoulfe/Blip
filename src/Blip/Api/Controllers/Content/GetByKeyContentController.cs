@@ -17,7 +17,7 @@ public class GetByKeyContentController(
     [ProducesResponseType(typeof(ContentSlim), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> GetById(Guid key)
+    public async Task<IActionResult> GetById(Guid key, string propertyAlias)
     {
         IContent? foundContent = ContentService.GetById(key);
         if (foundContent is null)
@@ -29,10 +29,22 @@ public class GetByKeyContentController(
 
         BlipContentDisplay content = MapToDisplay(foundContent);
 
+        Guid? dataTypeKey = foundContent
+            .Properties
+            .FirstOrDefault(x => x.Alias.Equals(propertyAlias, StringComparison.OrdinalIgnoreCase))?
+            .PropertyType
+            .DataTypeKey;
+
+        if (dataTypeKey is null)
+        {
+            return NotFound();
+        }
+
         ContentSlim slim = new()
         {
             Id = content.Id,
             Variants = content.Variants,
+            DataTypeKey = dataTypeKey.Value,
             AllowedActions = content.AllowedActions,
         };
 

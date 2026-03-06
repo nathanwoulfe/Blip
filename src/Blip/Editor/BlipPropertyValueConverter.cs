@@ -36,12 +36,20 @@ public class BlipPropertyValueConverter(
             return null;
         }
 
-        if (configuration.SourceNode is not GuidUdi sourceUdi)
+        if (!Guid.TryParse(configuration.SourceNode, out Guid sourceGuid))
         {
-            return null;
+            // Try parsing as UDI (e.g. "umb://document/guid")
+            if (UdiParser.TryParse(configuration.SourceNode, out Udi? udi) && udi is GuidUdi guidUdi)
+            {
+                sourceGuid = guidUdi.Guid;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        IPublishedContent? sourceNode = _publishedContentCache.GetById(sourceUdi.Guid);
+        IPublishedContent? sourceNode = _publishedContentCache.GetById(sourceGuid);
         BlockListModel? sourceProperty = sourceNode?.Value<BlockListModel>(configuration.SourceProperty);
 
         List<string?>? blockUdis = JsonConvert.DeserializeObject<List<string?>>(sourceString);
@@ -51,7 +59,7 @@ public class BlipPropertyValueConverter(
             return null;
         }
 
-        List<BlockListItem> blocks = new();
+        List<BlockListItem> blocks = [];
 
         foreach (string? udi in blockUdis)
         {
@@ -89,7 +97,7 @@ public class BlipPropertyValueConverter(
     public Type GetPropertyValueType(IPublishedPropertyType propertyType) => typeof(BlockListModel);
 
     /// <inheritdoc />
-    public bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorAlias.ToLower().Equals("nw.blip");
+    public bool IsConverter(IPublishedPropertyType propertyType) => propertyType.EditorAlias.Equals("nw.blip", StringComparison.OrdinalIgnoreCase);
 
     /// <inheritdoc />
     public bool? IsValue(object? value, PropertyValueLevel level)

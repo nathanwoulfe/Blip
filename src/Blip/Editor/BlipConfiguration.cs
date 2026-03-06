@@ -1,4 +1,3 @@
-using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.PropertyEditors;
 
 namespace Blip.Editor;
@@ -6,7 +5,7 @@ namespace Blip.Editor;
 public class BlipConfiguration
 {
     [ConfigurationField("sourceNode")]
-    public Udi? SourceNode { get; set; }
+    public string? SourceNode { get; set; }
 
     [ConfigurationField("sourceProperty")]
     public string? SourceProperty { get; set; }

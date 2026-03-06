@@ -7,4 +7,6 @@ public class ContentSlim
     public int Id { get; set; }
 
     public IEnumerable<string>? AllowedActions { get; set; }
+
+    public Guid DataTypeKey { get; set; }
 }
