@@ -248,7 +248,7 @@ export default class BlipPropertyEditorUIElement
         (bt) => bt.contentElementTypeKey === block.contentTypeKey,
       );
       return {
-        udi: `umb://element/${block.key}`,
+        key: block.key,
         contentTypeKey: block.contentTypeKey,
         label: blockType?.label || typeInfo?.name || "Block",
         icon: typeInfo?.icon ?? "icon-document",
@@ -326,7 +326,7 @@ export default class BlipPropertyEditorUIElement
       return html`<uui-loader></uui-loader>`;
     }
 
-    return html`
+    return html` ${JSON.stringify(this.value)}
       ${repeat(
         this._layouts,
         (layout, index) => `${index}_${layout.contentKey}`,

@@ -7,7 +7,7 @@ var C = Object.defineProperty, P = Object.getOwnPropertyDescriptor, f = (e) => {
   for (var a = u > 1 ? void 0 : u ? P(t, i) : t, d = e.length - 1, h; d >= 0; d--)
     (h = e[d]) && (a = (u ? h(t, i, a) : h(a)) || a);
   return u && a && C(t, i, a), a;
-}, k = (e, t, i) => t.has(e) || f("Cannot " + i), r = (e, t, i) => (k(e, t, "read from private field"), i ? i.call(e) : t.get(e)), _ = (e, t, i) => t.has(e) ? f("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), c = (e, t, i) => (k(e, t, "access private method"), i), l, s, g, $, m, x, y;
+}, k = (e, t, i) => t.has(e) || f("Cannot " + i), r = (e, t, i) => (k(e, t, "read from private field"), i ? i.call(e) : t.get(e)), _ = (e, t, i) => t.has(e) ? f("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, i), c = (e, t, i) => (k(e, t, "access private method"), i), l, s, g, y, m, $, x;
 const S = "blip-block-picker-modal";
 let n = class extends B {
   constructor() {
@@ -35,7 +35,7 @@ let n = class extends B {
 
           <div id="block-list">
             ${c(this, s, g).call(this).map(
-      (e) => c(this, s, y).call(this, e)
+      (e) => c(this, s, x).call(this, e)
     )}
           </div>
 
@@ -71,31 +71,31 @@ g = function() {
   const t = this._searchTerm.toLowerCase();
   return e.filter((i) => i.label.toLowerCase().includes(t));
 };
-$ = function(e) {
-  r(this, l).toggleSelect(e.udi), this.data?.multiPicker || c(this, s, m).call(this);
+y = function(e) {
+  r(this, l).toggleSelect(e.key), this.data?.multiPicker || c(this, s, m).call(this);
 };
 m = function() {
   this.value = { selection: r(this, l).getSelection() }, this._submitModal();
 };
-x = function(e) {
+$ = function(e) {
   const t = {};
   for (const i of e.value ?? [])
     t[i.alias] = i.value;
   return t;
 };
-y = function(e) {
-  const t = r(this, l).isSelected(e.udi);
+x = function(e) {
+  const t = r(this, l).isSelected(e.key);
   return o`
       <button
         type="button"
         class="block-item ${t ? "selected" : ""}"
-        @click=${() => c(this, s, $).call(this, e)}
+        @click=${() => c(this, s, y).call(this, e)}
       >
         <div class="block-item__icon">
           ${t ? o`<uui-icon name="icon-check"></uui-icon>` : o`<umb-icon name=${e.icon}></umb-icon>`}
         </div>
         <div class="block-item__label">
-          <umb-ufm-render inline .markdown=${e.label} .value=${c(this, s, x).call(this, e)}></umb-ufm-render>
+          <umb-ufm-render inline .markdown=${e.label} .value=${c(this, s, $).call(this, e)}></umb-ufm-render>
         </div>
       </button>
     `;

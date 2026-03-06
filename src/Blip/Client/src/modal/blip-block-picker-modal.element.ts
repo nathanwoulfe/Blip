@@ -51,7 +51,7 @@ export default class BlipBlockPickerModalElement extends UmbModalBaseElement<
   }
 
   #onBlockClick(block: BlipBlockViewModel) {
-    this.#selectionManager.toggleSelect(block.udi);
+    this.#selectionManager.toggleSelect(block.key);
 
     if (!this.data?.multiPicker) {
       this.#submit();
@@ -119,7 +119,7 @@ export default class BlipBlockPickerModalElement extends UmbModalBaseElement<
   }
 
   #renderBlock(block: BlipBlockViewModel) {
-    const isSelected = this.#selectionManager.isSelected(block.udi);
+    const isSelected = this.#selectionManager.isSelected(block.key);
     return html`
       <button
         type="button"

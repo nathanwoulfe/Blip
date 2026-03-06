@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip", "src\Blip\Blip.csproj", "{9CB87F52-E8CD-44E0-851E-F8994F32E50D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blip.Site", "Blip.Site\Blip.Site.csproj", "{4A0555EA-85BD-467D-997F-532C619E2487}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blip.Site", "Blip.Site\Blip.Site.csproj", "{4F305BC1-9DC6-4E3B-93D3-9642CAFFB96C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +33,10 @@ Global
 		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CB87F52-E8CD-44E0-851E-F8994F32E50D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A0555EA-85BD-467D-997F-532C619E2487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A0555EA-85BD-467D-997F-532C619E2487}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A0555EA-85BD-467D-997F-532C619E2487}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A0555EA-85BD-467D-997F-532C619E2487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F305BC1-9DC6-4E3B-93D3-9642CAFFB96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F305BC1-9DC6-4E3B-93D3-9642CAFFB96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F305BC1-9DC6-4E3B-93D3-9642CAFFB96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F305BC1-9DC6-4E3B-93D3-9642CAFFB96C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

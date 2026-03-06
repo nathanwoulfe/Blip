@@ -1,5 +1,5 @@
 export interface BlipBlockViewModel {
-  udi: string;
+  key: string;
   contentTypeKey: string;
   label: string;
   icon: string;
