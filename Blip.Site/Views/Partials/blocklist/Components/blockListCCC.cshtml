@@ -1,0 +1,7 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem<BlockListCcc>>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var block = Model.Content;
+}
+
+@block.Richtext

@@ -3,12 +3,15 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
+    .AddDeliveryApi()
     .AddComposers()
     .Build();
 
 WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();
+
+app.UseHttpsRedirection();
 
 app.UseUmbraco()
     .WithMiddleware(u =>

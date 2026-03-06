@@ -1,5 +1,4 @@
-using Newtonsoft.Json;
-using Umbraco.Cms.Core;
+using System.Text.Json;
 using Umbraco.Cms.Core.DeliveryApi;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.DeliveryApi;
@@ -36,23 +35,11 @@ public class BlipPropertyValueConverter(
             return null;
         }
 
-        if (!Guid.TryParse(configuration.SourceNode, out Guid sourceGuid))
-        {
-            // Try parsing as UDI (e.g. "umb://document/guid")
-            if (UdiParser.TryParse(configuration.SourceNode, out Udi? udi) && udi is GuidUdi guidUdi)
-            {
-                sourceGuid = guidUdi.Guid;
-            }
-            else
-            {
-                return null;
-            }
-        }
 
-        IPublishedContent? sourceNode = _publishedContentCache.GetById(sourceGuid);
+        IPublishedContent? sourceNode = _publishedContentCache.GetById(configuration.SourceNode.Value);
         BlockListModel? sourceProperty = sourceNode?.Value<BlockListModel>(configuration.SourceProperty);
 
-        List<string?>? blockUdis = JsonConvert.DeserializeObject<List<string?>>(sourceString);
+        List<string?>? blockUdis = JsonSerializer.Deserialize<List<string?>>(sourceString);
 
         if (blockUdis is null || sourceProperty is null)
         {
@@ -68,9 +55,14 @@ public class BlipPropertyValueConverter(
                 continue;
             }
 
+            Guid? key = Guid.Parse(udi.Split('/').Last());
+            if (key is not Guid blockKey)
+            {
+                continue;
+            }
+
             // match stored UDI strings against block content keys
-            BlockListItem? block = sourceProperty.FirstOrDefault(x =>
-                Udi.Create(Constants.UdiEntityType.Element, x.Content.Key).ToString() == udi);
+            BlockListItem? block = sourceProperty.FirstOrDefault(x => x.ContentKey == blockKey);
 
             if (block is null)
             {
@@ -80,7 +72,7 @@ public class BlipPropertyValueConverter(
             blocks.Add(block);
         }
 
-        return new BlockListModel(blocks.ToList());
+        return new BlockListModel([.. blocks]);
     }
 
     /// <inheritdoc />

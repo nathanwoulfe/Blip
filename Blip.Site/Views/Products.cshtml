@@ -22,6 +22,11 @@
             <a class="nav-link nav-link--black" href="">Other</a>
         </nav>
         -->
+       
+       <section class="section section">
+    @await Html.GetBlockListHtmlAsync(Model.Blocks)
+</section>
+
         <div class="product-grid">
             @if (Model.FeaturedProducts != null)
             {

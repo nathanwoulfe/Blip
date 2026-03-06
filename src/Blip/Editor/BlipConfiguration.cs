@@ -5,7 +5,7 @@ namespace Blip.Editor;
 public class BlipConfiguration
 {
     [ConfigurationField("sourceNode")]
-    public string? SourceNode { get; set; }
+    public Guid? SourceNode { get; set; }
 
     [ConfigurationField("sourceProperty")]
     public string? SourceProperty { get; set; }
