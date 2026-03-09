@@ -7,7 +7,7 @@ export const manifests = [
     type: "propertyEditorUi",
     alias: BLIP_BLOCK_LIST_PROPERTY_EDITOR_UI_ALIAS,
     name: "Blip Block List Item Picker Property Editor UI",
-    element: () => import("./blip.editor.js"),
+    element: () => import("./blip-editor.element.js"),
     meta: {
       label: "Block List Item Picker",
       icon: "icon-list",

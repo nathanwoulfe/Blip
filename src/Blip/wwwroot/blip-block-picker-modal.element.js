@@ -24,14 +24,14 @@ let n = class extends B {
     return o`
       <umb-body-layout headline=${this.localize.term("blip_selectItems")}>
         <div id="main">
-          <uui-input
+          <!-- <uui-input
             type="search"
             placeholder=${this.localize.term("blip_filterBlocks")}
             .value=${this._searchTerm}
             @input=${(e) => {
       this._searchTerm = e.target.value;
     }}
-          ></uui-input>
+          ></uui-input> -->
 
           <div id="block-list">
             ${c(this, s, g).call(this).map(
@@ -69,7 +69,7 @@ g = function() {
   const e = this.data?.blocks ?? [];
   if (!this._searchTerm) return e;
   const t = this._searchTerm.toLowerCase();
-  return e.filter((i) => i.label.toLowerCase().includes(t));
+  return e.filter((i) => i.label?.toLowerCase().includes(t));
 };
 y = function(e) {
   r(this, l).toggleSelect(e.key), this.data?.multiPicker || c(this, s, m).call(this);

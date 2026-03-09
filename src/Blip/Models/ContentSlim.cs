@@ -4,9 +4,9 @@ public class ContentSlim
 {
     public IEnumerable<BlipVariantDisplay> Variants { get; set; } = [];
 
-    public int Id { get; set; }
+    public object? SourceValue { get; set; }
 
-    public IEnumerable<string>? AllowedActions { get; set; }
+    public object? BlockConfiguration { get; set; }
 
-    public Guid DataTypeKey { get; set; }
+    public bool CanEdit { get; set; }
 }

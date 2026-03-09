@@ -3,5 +3,10 @@ export interface BlipBlockViewModel {
   contentTypeKey: string;
   label: string;
   icon: string;
-  value: Array<{ alias: string; value?: unknown }> | undefined;
+  value: Array<BlipBlockValueModel> | undefined;
+}
+
+export interface BlipBlockValueModel {
+  alias: string;
+  value?: unknown;
 }

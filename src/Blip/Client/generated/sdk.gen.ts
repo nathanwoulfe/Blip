@@ -3,7 +3,7 @@
 import type { Client, Options as Options2, TDataShape } from '@hey-api/client-fetch';
 
 import { client } from './client.gen';
-import type { GetUmbracoBlipManagementApiV1Data, GetUmbracoBlipManagementApiV1Errors, GetUmbracoBlipManagementApiV1Responses, PostEmptyByKeysData, PostEmptyByKeysErrors, PostEmptyByKeysResponses } from './types.gen';
+import type { GetUmbracoBlipManagementApiV1Data, GetUmbracoBlipManagementApiV1Errors, GetUmbracoBlipManagementApiV1Responses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -30,23 +30,6 @@ export class BlipService {
             ],
             url: '/umbraco/blip/management/api/v1',
             ...options
-        });
-    }
-    
-    public static postEmptyByKeys<ThrowOnError extends boolean = true>(options?: Options<PostEmptyByKeysData, ThrowOnError>) {
-        return (options?.client ?? client).post<PostEmptyByKeysResponses, PostEmptyByKeysErrors, ThrowOnError>({
-            security: [
-                {
-                    scheme: 'bearer',
-                    type: 'http'
-                }
-            ],
-            url: '/umbraco/blip/management/api/v1/empty-by-keys',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options?.headers
-            }
         });
     }
 }

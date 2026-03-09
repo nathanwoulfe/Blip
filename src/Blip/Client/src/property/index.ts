@@ -1,2 +1,2 @@
-export * from './blip.editor.js';
+export * from './blip-editor.element.js';
 export * from "./constants.js";

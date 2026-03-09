@@ -42,12 +42,12 @@ export default class BlipBlockPickerModalElement extends UmbModalBaseElement<
     });
   }
 
-  #getFilteredBlocks(): BlipBlockViewModel[] {
+  #getFilteredBlocks() {
     const blocks = this.data?.blocks ?? [];
     if (!this._searchTerm) return blocks;
 
     const term = this._searchTerm.toLowerCase();
-    return blocks.filter((b) => b.label.toLowerCase().includes(term));
+    return blocks.filter((b) => b.label?.toLowerCase().includes(term));
   }
 
   #onBlockClick(block: BlipBlockViewModel) {
@@ -67,14 +67,14 @@ export default class BlipBlockPickerModalElement extends UmbModalBaseElement<
     return html`
       <umb-body-layout headline=${this.localize.term("blip_selectItems")}>
         <div id="main">
-          <uui-input
+          <!-- <uui-input
             type="search"
             placeholder=${this.localize.term("blip_filterBlocks")}
             .value=${this._searchTerm}
             @input=${(e: InputEvent) => {
               this._searchTerm = (e.target as HTMLInputElement).value;
             }}
-          ></uui-input>
+          ></uui-input> -->
 
           <div id="block-list">
             ${this.#getFilteredBlocks().map((block) =>
