@@ -1,17 +1,25 @@
 name: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
+trigger:
+  branches:
+    include:
+      - v*/dev
+  tags:
+    include:
+      - release-*
+
 parameters:
   - name: cache_npm
     displayName: Cache NPM packages
     type: boolean
-    default: true
+    default: false
   - name: cache_nuget
     displayName: Cache NuGet packages
     type: boolean
     default: false
 
 variables:
-  nodeVersion: '=22'
+  nodeVersion: 22.x
   solution: Blip.sln
   buildConfiguration: Release
   DOTNET_NOLOGO: true
@@ -27,7 +35,7 @@ stages:
     jobs:
       - job: Build
         pool: 
-          vmImage: windows-latest
+          vmImage: ubuntu-latest
         steps:
           # Checkout source (avoid shallow clone to calculate version height)
           - checkout: self
@@ -68,6 +76,14 @@ stages:
                 nuget | "$(Agent.OS)"
                 nuget
               path: $(NUGET_PACKAGES)
+
+          - script: npm ci
+            displayName: Install NPM packages
+            workingDirectory: src/Blip/Client
+
+          - script: npm run build
+            displayName: Build client assets
+            workingDirectory: src/Blip/Client
 
           - script: dotnet restore $(solution) --locked-mode
             displayName: Restore NuGet packages
