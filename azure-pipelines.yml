@@ -20,7 +20,7 @@ parameters:
 
 variables:
   nodeVersion: 22.x
-  solution: src/Blip/Blip.csproj
+  solution: Blip.sln
   buildConfiguration: Release
   DOTNET_NOLOGO: true
   DOTNET_GENERATE_ASPNET_CERTIFICATE: false
