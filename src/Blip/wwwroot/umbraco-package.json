@@ -1,6 +1,6 @@
 {
   "name": "Blip",
-  "version": "",
+  "version": "17.0.0--rc.preview.8.g46954de",
   "extensions": [
     {
       "name": "Blip Backoffice EntryPoint",
