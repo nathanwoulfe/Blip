@@ -22,6 +22,7 @@ export type GetUmbracoBlipManagementApiV1Data = {
     query?: {
         key?: string;
         propertyAlias?: string;
+        culture?: string;
     };
     url: '/umbraco/blip/management/api/v1';
 };

@@ -14,7 +14,8 @@ import {
   type UmbSorterConfig,
 } from "@umbraco-cms/backoffice/sorter";
 import { UMB_MODAL_MANAGER_CONTEXT } from "@umbraco-cms/backoffice/modal";
-import { tryExecute } from "@umbraco-cms/backoffice/resources";
+import { tryExecute, UmbApiError } from "@umbraco-cms/backoffice/resources";
+import { UMB_NOTIFICATION_CONTEXT } from "@umbraco-cms/backoffice/notification";
 import { UMB_VARIANT_CONTEXT } from "@umbraco-cms/backoffice/variant";
 import { BLIP_BLOCK_PICKER_MODAL } from "../modal/index.js";
 import { BlipService } from "../../generated/index.js";
@@ -86,8 +87,6 @@ export default class BlipPropertyEditorUIElement
     this._limitMin = config.getValueByAlias<number>("minNumber") ?? 0;
     this._limitMax = config.getValueByAlias<number>("maxNumber") ?? 0;
     this._multiPicker = this._limitMax !== 1;
-
-    this.#loadData();
   }
 
   @state() private _loading = true;
@@ -98,6 +97,7 @@ export default class BlipPropertyEditorUIElement
   @state() private _editPath?: string;
   @state() private _multiPicker = true;
   @state() private _sourceProperty = "";
+  @state() private _culture: string | null = null;
 
   #sourceLayouts: UmbBlockListLayoutModel[] = [];
 
@@ -126,6 +126,15 @@ export default class BlipPropertyEditorUIElement
     this.consumeContext(UMB_VARIANT_CONTEXT, (context) => {
       this.observe(context?.displayVariantId, (variantId) => {
         this.managerContext.setVariantId(variantId);
+      });
+
+      this.observe(context?.displayCulture, (culture) => {
+        if (!culture) return;
+
+        this._culture = culture;
+        if (this._sourceNodeKey) {
+          this.#loadData();
+        }
       });
     });
 
@@ -184,15 +193,33 @@ export default class BlipPropertyEditorUIElement
       return;
     }
 
-    const { data: slim } = await tryExecute(
+    const { data: slim, error } = await tryExecute(
       this,
       BlipService.getUmbracoBlipManagementApiV1({
         query: {
           key: this._sourceNodeKey,
           propertyAlias: this._sourceProperty,
+          culture: this._culture ?? undefined,
         },
       }),
     );
+
+    if (error) {
+      if (UmbApiError.isUmbApiError(error)) {
+        const notificationContext = await this.getContext(
+          UMB_NOTIFICATION_CONTEXT,
+        );
+        notificationContext?.peek("danger", {
+          data: {
+            headline: error.problemDetails.title,
+            message: error.problemDetails.detail ?? "",
+          },
+        });
+      }
+
+      this._loading = false;
+      return;
+    }
 
     this._userCanEdit = slim.canEdit;
 
@@ -232,7 +259,9 @@ export default class BlipPropertyEditorUIElement
         contentTypeKey: block.contentTypeKey,
         label: blockConfig?.label ?? blockType?.name ?? "Block",
         icon: blockType?.icon ?? "icon-document",
-        value: block.values,
+        value: block.values.filter(
+          (v) => v.culture == null || v.culture === this._culture,
+        ),
       };
     });
 

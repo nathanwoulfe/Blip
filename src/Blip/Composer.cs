@@ -1,4 +1,5 @@
 using Blip.Api.Configuration;
+using Blip.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Api.Common.OpenApi;
 using Umbraco.Cms.Core.Composing;
@@ -12,5 +13,6 @@ internal class Composer : IComposer
     {
         builder.Services.ConfigureOptions<BlipSwaggerGenOptions>();
         builder.Services.AddSingleton<IOperationIdHandler, Api.Configuration.OperationIdHandler>();
+        builder.Services.AddSingleton<IBlipService, BlipService>();
     }
 }
