@@ -81,19 +81,14 @@ stages:
           - script: dotnet restore $(solution) --locked-mode
             displayName: Restore NuGet packages
 
-          # Client Restore
-          - task: Npm@1
-            displayName: NPM Install
-            inputs:
-              command: 'custom'
-              customCommand: 'run install'
+          # Client Restore & Build
+          - script: npm ci
+            displayName: Install NPM packages
+            workingDirectory: src/Blip/Client
 
-          # Client Build
-          - task: Npm@1
-            displayName: Build client app
-            inputs:
-              command: 'custom'
-              customCommand: 'run build'
+          - script: npm run build
+            displayName: Build client assets
+            workingDirectory: src/Blip/Client
 
           # Pack 
           - script: dotnet pack $(solution) --configuration $(buildConfiguration) --no-restore --output $(Build.ArtifactStagingDirectory)/nupkg
