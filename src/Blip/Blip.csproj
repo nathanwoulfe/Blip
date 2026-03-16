@@ -6,7 +6,6 @@
     <PackageTags>umbraco umbraco-cms umbraco-marketplace</PackageTags>
     <IncludeSymbols>false</IncludeSymbols>
     <StaticWebAssetBasePath>App_Plugins/Blip</StaticWebAssetBasePath>
-    <ImplicitUsings>enable</ImplicitUsings>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc> 
   </PropertyGroup>
