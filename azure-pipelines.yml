@@ -102,12 +102,6 @@ stages:
               artifactName: nupkg
 
           - task: PublishPipelineArtifact@1
-            displayName: Publish NPM packages
-            inputs:
-              targetPath: $(Build.ArtifactStagingDirectory)/npm
-              artifactName: npm
-
-          - task: PublishPipelineArtifact@1
             displayName: Publish build output
             inputs:
               targetPath: $(Build.SourcesDirectory)
